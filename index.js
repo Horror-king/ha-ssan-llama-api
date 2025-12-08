@@ -5,8 +5,8 @@ const Groq = require("groq-sdk");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Use your GROQ_API_KEY from environment variables
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// ⚠️ Directly including your API key for Vercel deployment
+const groq = new Groq({ apiKey: "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" });
 
 app.use(cors()); // Enable CORS
 
@@ -25,7 +25,7 @@ app.get("/llama", async (req, res) => {
           content: prompt
         }
       ],
-      model: "openai/gpt-oss-20b" // ← supported model
+      model: "openai/gpt-oss-20b" // supported model
     });
 
     return res.json({
