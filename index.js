@@ -5,9 +5,10 @@ const Groq = require("groq-sdk");
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Use your GROQ_API_KEY from environment variables
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-app.use(cors());
+app.use(cors()); // Enable CORS
 
 app.get("/llama", async (req, res) => {
   const prompt = req.query.prompt;
@@ -24,7 +25,7 @@ app.get("/llama", async (req, res) => {
           content: prompt
         }
       ],
-      model: "llama3-13b-8192"  // ← updated to a supported model
+      model: "openai/gpt-oss-20b" // ← supported model
     });
 
     return res.json({
@@ -33,7 +34,7 @@ app.get("/llama", async (req, res) => {
   } catch (err) {
     console.error("Error from Groq:", err);
     return res.status(500).json({
-      error: err.message || "Unknown error occurred"
+      error: err.response?.data?.message || err.message || "Unknown error occurred"
     });
   }
 });
