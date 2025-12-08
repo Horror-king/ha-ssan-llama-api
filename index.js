@@ -24,7 +24,7 @@ app.get("/llama", async (req, res) => {
           content: prompt
         }
       ],
-      model: "llama3-8b-8192"
+      model: "llama3-13b-8192"  // ← updated to a supported model
     });
 
     return res.json({
