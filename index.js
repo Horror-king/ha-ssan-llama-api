@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // ⚠️ Directly including your API key for Vercel deployment
-const groq = new Groq({ apiKey: "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" });
+const groq = new Groq({ apiKey: "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" });
 
 app.use(cors()); // Enable CORS
 
